@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+{% load static %}
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}MindScan — Teen Mental Health AI{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="{% static 'predictor/css/style.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="/" class="brand">
+    <i class="fa-solid fa-brain"></i>
+    <span>MindScan</span>
+  </a>
+  <div class="nav-links">
+    <a href="/" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
+    <a href="/about/" class="nav-link"><i class="fa-solid fa-circle-info"></i> About</a>
+    <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+      <i class="fa-solid fa-moon" id="themeIcon"></i>
+    </button>
+  </div>
+</nav>
+
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<footer>
+  <p><i class="fa-solid fa-heart-pulse"></i> MindScan uses AI for screening only — not a medical diagnosis. Always consult a professional.</p>
+</footer>
+
+<script src="{% static 'predictor/js/main.js' %}"></script>
+</body>
+</html>

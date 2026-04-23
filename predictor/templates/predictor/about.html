@@ -1,0 +1,70 @@
+{% extends 'predictor/base.html' %}
+{% block title %}MindScan — About{% endblock %}
+
+{% block content %}
+<div class="about-page">
+  <section class="hero">
+    <div class="hero-badge"><i class="fa-solid fa-circle-info"></i> About MindScan</div>
+    <h1 class="hero-title">How <span class="accent">It Works</span></h1>
+    <p class="hero-sub">An XGBoost classifier trained on 1,200 teen mental health records to predict depression risk.</p>
+  </section>
+
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="about-icon"><i class="fa-solid fa-database"></i></div>
+      <h3>Dataset</h3>
+      <p>1,200 teen records covering social media habits, sleep, academics, stress, anxiety, and addiction levels.</p>
+    </div>
+    <div class="about-card">
+      <div class="about-icon"><i class="fa-solid fa-gears"></i></div>
+      <h3>Preprocessing</h3>
+      <p>Categorical encoding + SMOTE oversampling to handle the class imbalance (only ~2.6% positive cases).</p>
+    </div>
+    <div class="about-card">
+      <div class="about-icon"><i class="fa-solid fa-robot"></i></div>
+      <h3>Model</h3>
+      <p>XGBoost classifier — a gradient boosted tree ensemble known for speed and accuracy on tabular data.</p>
+    </div>
+    <div class="about-card">
+      <div class="about-icon"><i class="fa-solid fa-tags"></i></div>
+      <h3>Output</h3>
+      <p>Binary prediction: <strong>0</strong> = Low Depression Risk, <strong>1</strong> = Depression Risk Detected, plus confidence score.</p>
+    </div>
+  </div>
+
+  <div class="feature-table-card">
+    <h3><i class="fa-solid fa-list-check"></i> Input Features</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Feature</th><th>Type</th><th>Range / Values</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Age</td><td>Numeric</td><td>10 – 25</td></tr>
+          <tr><td>2</td><td>Gender</td><td>Categorical</td><td>Male / Female</td></tr>
+          <tr><td>3</td><td>Daily Social Media Hours</td><td>Numeric</td><td>0 – 24 hrs</td></tr>
+          <tr><td>4</td><td>Platform Usage</td><td>Categorical</td><td>Instagram / TikTok / Both</td></tr>
+          <tr><td>5</td><td>Sleep Hours</td><td>Numeric</td><td>0 – 12 hrs</td></tr>
+          <tr><td>6</td><td>Screen Time Before Sleep</td><td>Numeric</td><td>0 – 10 hrs</td></tr>
+          <tr><td>7</td><td>Academic Performance</td><td>Numeric</td><td>GPA 0.0 – 4.0</td></tr>
+          <tr><td>8</td><td>Physical Activity</td><td>Numeric</td><td>0 – 10 hrs/day</td></tr>
+          <tr><td>9</td><td>Social Interaction Level</td><td>Categorical</td><td>Low / Medium / High</td></tr>
+          <tr><td>10</td><td>Stress Level</td><td>Numeric</td><td>1 – 10</td></tr>
+          <tr><td>11</td><td>Anxiety Level</td><td>Numeric</td><td>1 – 10</td></tr>
+          <tr><td>12</td><td>Addiction Level</td><td>Numeric</td><td>1 – 10</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="creator-section" style="text-align: center; margin: 40px 0; padding: 30px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.1)); border-radius: 12px;">
+    <h3 style="margin-bottom: 20px;"><i class="fa-solid fa-user"></i> Creator</h3>
+    <p style="margin-bottom: 20px; font-size: 16px;">Connect with me:</p>
+    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+      <a href="https://github.com/ShubhamAIML" target="_blank" class="social-link" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #fff; border: 2px solid #3b82f6; border-radius: 8px; text-decoration: none; color: #3b82f6; font-weight: 500; transition: all 0.3s;" onmouseover="this.style.background='#3b82f6'; this.style.color='#fff';" onmouseout="this.style.background='#fff'; this.style.color='#3b82f6';"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a href="https://www.linkedin.com/in/shubham-kumar-016b6816b/" target="_blank" class="social-link" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #fff; border: 2px solid #0a66c2; border-radius: 8px; text-decoration: none; color: #0a66c2; font-weight: 500; transition: all 0.3s;" onmouseover="this.style.background='#0a66c2'; this.style.color='#fff';" onmouseout="this.style.background='#fff'; this.style.color='#0a66c2';"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      <a href="https://portfolio-mxx7.onrender.com/" target="_blank" class="social-link" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #fff; border: 2px solid #8b5cf6; border-radius: 8px; text-decoration: none; color: #8b5cf6; font-weight: 500; transition: all 0.3s;" onmouseover="this.style.background='#8b5cf6'; this.style.color='#fff';" onmouseout="this.style.background='#fff'; this.style.color='#8b5cf6';"><i class="fa-solid fa-briefcase"></i> Portfolio</a>
+    </div>
+  </div>
+
+  <a href="/" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Go to Assessment</a>
+</div>
+{% endblock %}

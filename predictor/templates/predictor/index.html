@@ -1,0 +1,135 @@
+{% extends 'predictor/base.html' %}
+{% load static %}
+{% block title %}MindScan — Teen Mental Health Predictor{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-badge"><i class="fa-solid fa-robot"></i> XGBoost AI Model</div>
+  <h1 class="hero-title">Teen Mental Health <span class="accent">Prediction</span></h1>
+  <p class="hero-sub">Answer 12 questions to receive an AI-powered mental wellness screening in seconds.</p>
+  <div class="hero-stats">
+    <div class="stat"><span>1200+</span><small>Data Points</small></div>
+    <div class="stat-div"></div>
+    <div class="stat"><span>XGBoost</span><small>Algorithm</small></div>
+    <div class="stat-div"></div>
+    <div class="stat"><span>12</span><small>Features</small></div>
+  </div>
+</section>
+
+<div class="form-card">
+  <div class="form-header">
+    <i class="fa-solid fa-clipboard-list"></i>
+    <h2>Assessment Form</h2>
+    <div class="progress-bar-wrap"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <form action="/predict/" method="POST" id="assessmentForm">
+    {% csrf_token %}
+
+    <div class="form-grid">
+
+      <!-- SECTION 1: Personal -->
+      <div class="section-label"><i class="fa-solid fa-user"></i> Personal Info</div>
+
+      <div class="field-group">
+        <label><i class="fa-solid fa-cake-candles"></i> Age</label>
+        <input type="number" name="age" min="10" max="25" placeholder="e.g. 16" required>
+      </div>
+
+      <div class="field-group">
+        <label><i class="fa-solid fa-venus-mars"></i> Gender</label>
+        <select name="gender" required>
+          <option value="">Select gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+
+      <!-- SECTION 2: Social Media -->
+      <div class="section-label"><i class="fa-solid fa-mobile-screen"></i> Social Media</div>
+
+      <div class="field-group">
+        <label><i class="fa-solid fa-clock"></i> Daily Social Media Hours</label>
+        <input type="number" name="daily_social_media_hours" step="0.1" min="0" max="24" placeholder="e.g. 3.5" required>
+      </div>
+
+      <div class="field-group">
+        <label><i class="fa-solid fa-hashtag"></i> Primary Platform</label>
+        <select name="platform_usage" required>
+          <option value="">Select platform</option>
+          <option value="Instagram">Instagram</option>
+          <option value="TikTok">TikTok</option>
+          <option value="Both">Both</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label><i class="fa-solid fa-moon"></i> Screen Time Before Sleep (hrs)</label>
+        <input type="number" name="screen_time_before_sleep" step="0.1" min="0" max="10" placeholder="e.g. 1.5" required>
+      </div>
+
+      <!-- SECTION 3: Lifestyle -->
+      <div class="section-label"><i class="fa-solid fa-seedling"></i> Lifestyle</div>
+
+      <div class="field-group">
+        <label><i class="fa-solid fa-bed"></i> Sleep Hours per Night</label>
+        <input type="number" name="sleep_hours" step="0.1" min="0" max="12" placeholder="e.g. 7.5" required>
+      </div>
+
+      <div class="field-group">
+        <label><i class="fa-solid fa-person-running"></i> Physical Activity (hrs/day)</label>
+        <input type="number" name="physical_activity" step="0.1" min="0" max="10" placeholder="e.g. 1.0" required>
+      </div>
+
+      <div class="field-group">
+        <label><i class="fa-solid fa-graduation-cap"></i> Academic Performance (GPA 0–4)</label>
+        <input type="number" name="academic_performance" step="0.01" min="0" max="4" placeholder="e.g. 3.2" required>
+      </div>
+
+      <div class="field-group">
+        <label><i class="fa-solid fa-people-group"></i> Social Interaction Level</label>
+        <select name="social_interaction_level" required>
+          <option value="">Select level</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
+
+      <!-- SECTION 4: Mental Health -->
+      <div class="section-label"><i class="fa-solid fa-brain"></i> Mental Health Indicators</div>
+
+      <div class="field-group">
+        <label><i class="fa-solid fa-fire"></i> Stress Level <span class="range-hint">(1–10)</span></label>
+        <div class="slider-wrap">
+          <input type="range" name="stress_level" min="1" max="10" value="5" class="slider" id="stress">
+          <span class="slider-val" id="stressVal">5</span>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label><i class="fa-solid fa-bolt"></i> Anxiety Level <span class="range-hint">(1–10)</span></label>
+        <div class="slider-wrap">
+          <input type="range" name="anxiety_level" min="1" max="10" value="5" class="slider" id="anxiety">
+          <span class="slider-val" id="anxietyVal">5</span>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label><i class="fa-solid fa-link"></i> Social Media Addiction Level <span class="range-hint">(1–10)</span></label>
+        <div class="slider-wrap">
+          <input type="range" name="addiction_level" min="1" max="10" value="5" class="slider" id="addiction">
+          <span class="slider-val" id="addictionVal">5</span>
+        </div>
+      </div>
+
+    </div>
+
+    <button type="submit" class="submit-btn" id="submitBtn">
+      <i class="fa-solid fa-magnifying-glass-chart"></i>
+      <span>Analyze My Mental Health</span>
+      <div class="btn-loader hidden" id="btnLoader"><i class="fa-solid fa-spinner fa-spin"></i></div>
+    </button>
+  </form>
+</div>
+{% endblock %}

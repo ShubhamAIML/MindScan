@@ -1,0 +1,57 @@
+{% extends 'predictor/base.html' %}
+{% block title %}MindScan — Your Results{% endblock %}
+
+{% block content %}
+<div class="result-page">
+
+  <div class="result-card {{ status }}">
+    <div class="result-icon">
+      {% if status == 'danger' %}
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      {% else %}
+        <i class="fa-solid fa-shield-heart"></i>
+      {% endif %}
+    </div>
+
+    <h2 class="result-title">{{ label_text }}</h2>
+
+    <div class="confidence-ring">
+      <svg viewBox="0 0 120 120" class="ring-svg">
+        <circle cx="60" cy="60" r="52" class="ring-bg"/>
+        <circle cx="60" cy="60" r="52" class="ring-fill {{ status }}" 
+                style="stroke-dashoffset: calc(327 - (327 * {{ probability }}) / 100)"/>
+      </svg>
+      <div class="ring-label">
+        <span class="ring-pct">{{ probability }}%</span>
+        <small>Confidence</small>
+      </div>
+    </div>
+
+    <div class="result-badge {{ status }}">
+      {% if status == 'danger' %}
+        <i class="fa-solid fa-circle-exclamation"></i> High Risk Detected
+      {% else %}
+        <i class="fa-solid fa-circle-check"></i> Healthy Profile
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="tips-card">
+    <h3><i class="fa-solid fa-lightbulb"></i> Personalized Recommendations</h3>
+    <ul class="tips-list">
+      {% for tip in tips %}
+      <li><i class="fa-solid fa-arrow-right"></i> {{ tip }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+
+
+  <div class="disclaimer-box">
+    <i class="fa-solid fa-circle-info"></i>
+    <p>This is an AI screening tool, not a clinical diagnosis. Please consult a qualified mental health professional for proper evaluation.</p>
+  </div>
+
+  <a href="/" class="back-btn"><i class="fa-solid fa-rotate-left"></i> Take Another Assessment</a>
+</div>
+{% endblock %}
