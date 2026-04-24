@@ -30,10 +30,12 @@ TEMPLATES = [{
 
 WSGI_APPLICATION = 'mental_health_app.wsgi.application'
 
+# Static files configuration (CRITICAL FOR PRODUCTION)
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'predictor', 'static')]
+STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Model path - place xgboost_depression_model.pkl in BASE_DIR
