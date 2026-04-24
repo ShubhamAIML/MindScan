@@ -30,13 +30,20 @@ TEMPLATES = [{
 
 WSGI_APPLICATION = 'mental_health_app.wsgi.application'
 
-# Static files configuration (CRITICAL FOR PRODUCTION)
+# ====== STATIC FILES CONFIGURATION (CRITICAL!) ======
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Directory where Django looks for static files to collect
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'predictor', 'static')]
-STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
+
+# Simple storage backend - WhiteNoise will handle caching
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
+# Enable WhiteNoise autorefresh
+WHITENOISE_AUTOREFRESH = not DEBUG
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Model path - place xgboost_depression_model.pkl in BASE_DIR
+# Model path
 MODEL_PATH = os.path.join(BASE_DIR, 'xgboost_depression_model.pkl')
