@@ -351,8 +351,8 @@ social_interaction_level: low → 0,  high → 1,  medium → 2
 
 ## 👨‍💻 Developer
 
-**Your Name**
-ML Engineer & Full Stack Developer
+**Shubham Kumar**
+ML Engineer
 
 - 🔗 [LinkedIn](https://www.linkedin.com/in/shubham-kumar-016b6816b/)
 - 🐙 [GitHub](https://github.com/ShubhamAIML)
